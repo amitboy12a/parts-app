@@ -1,24 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Parts Search</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>GearFlow Auto Parts</title>
+
+    <link
+    rel="stylesheet"
+    href="style.css">
+
 </head>
+
 <body>
 
-<h1>Parts Search System</h1>
+    <div class="container">
 
-<input type="text" id="search" placeholder="Search Part Number">
+        <div class="title">
+            GEARFLOW AUTO PARTS
+        </div>
 
-<div id="products"></div>
+        <div class="search-box">
 
-<h2>Cart</h2>
-<div id="cart"></div>
+            <input
+            type="text"
+            id="search"
+            placeholder="Search Part Number...">
 
-<button onclick="downloadPDF()">
-Download PDF Bill
-</button>
+            <button onclick="searchProduct()">
+                🔍
+            </button>
 
-<script src="script.js"></script>
+        </div>
+
+        <div class="main">
+
+            <!-- PRODUCTS -->
+
+            <div
+            class="products"
+            id="products">
+
+            </div>
+
+            <!-- CART -->
+
+            <div class="cart">
+
+                <h2>
+                    Cart Summary
+                </h2>
+
+                <div id="cart">
+
+                </div>
+
+                <div id="total">
+                    Total Amount: Rs. 0
+                </div>
+
+                <button
+                class="download-btn"
+                onclick="downloadPDF()">
+
+                    Download Bill PDF
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
