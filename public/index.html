@@ -182,6 +182,8 @@
 </body>
 <script>
 
+let currentVersion = "1";
+
 if(
 
 localStorage.getItem(
@@ -192,7 +194,19 @@ localStorage.getItem(
 
 "true"
 
+||
+
+localStorage.getItem(
+"loginVersion"
+)
+
+!==
+
+currentVersion
+
 ){
+
+    localStorage.clear();
 
     window.location.href =
     "login.html";
@@ -200,6 +214,5 @@ localStorage.getItem(
 }
 
 </script>
-
 </html>
 <script src="script.js"></script>
