@@ -601,21 +601,67 @@ body{
 
 /* TOP */
 
+/* INVOICE TOP */
+
 .invoice-top{
 
     display:flex;
 
-    justify-content:space-between;
+    flex-direction:column;
 
     align-items:center;
+
+    justify-content:center;
+
+    margin-top:-40px;
 
     margin-bottom:40px;
 
 }
 
+/* LOGO */
+
 .invoice-logo{
 
-    width:70px;
+    width:90px;
+
+     margin-top:-30px;
+
+    margin-bottom:10px;
+
+}
+
+/* CENTER */
+
+.invoice-center{
+
+    text-align:center;
+
+}
+
+/* SHOP NAME */
+
+.invoice-center h1{
+
+    font-size:38px;
+
+    font-weight:bold;
+
+    color:#111;
+
+    letter-spacing:2px;
+
+}
+
+/* TAGLINE */
+
+.invoice-center p{
+
+    font-size:16px;
+
+    color:#555;
+
+    margin-top:5px;
 
 }
 
