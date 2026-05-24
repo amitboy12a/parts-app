@@ -12,7 +12,7 @@
     <div class="main-title">
 
     <h1>
-        GEAR<span>FLOW</span>
+        AUTO <span>KRAFT</span>
     </h1>
 
     <p>
@@ -26,6 +26,85 @@
     href="style.css">
 
 </head>
+<!-- INVOICE -->
+
+<div id="invoice" class="invoice">
+
+    <div class="invoice-top">
+
+        <div>
+
+            <img src="logo.png" class="invoice-logo">
+
+            <h1>AUTO KRAFT</h1>
+
+        </div>
+
+        <div class="invoice-tag">
+
+            INVOICE
+
+        </div>
+
+    </div>
+
+    <div class="invoice-info">
+
+        <div>
+
+            <h3>122,Narayan Plaza</h3>
+
+            <p>Exhibition Road,Patna</p>
+
+            <p>Mob:9304803616</p>
+
+        </div>
+
+        <div>
+
+            <p><b>Invoice No:</b> 1023</p>
+
+            <p><b>Date:</b> 22-05-2026</p>
+
+        </div>
+
+    </div>
+
+    <table class="invoice-table">
+
+        <thead>
+
+            <tr>
+
+                
+<th>SN No</th>
+                <th>Part No</th>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Per</th>
+                <th>Price</th>
+
+
+            </tr>
+
+        </thead>
+
+        <tbody id="invoice-items">
+
+        </tbody>
+
+    </table>
+
+    <div class="invoice-total">
+
+    GRAND TOTAL:
+    ₹<span id="invoice-total-price">
+    0
+    </span>
+
+</div>
+
+</div>
 
 <body>
 
@@ -67,7 +146,7 @@
             id="products">
 
             </div>
-
+            
             <!-- CART -->
 
             <div class="cart">
@@ -86,7 +165,7 @@
 
                 <button
                 class="download-btn"
-                onclick="downloadPDF()">
+               onclick="downloadBill()"></button>
 
                     Download Bill PDF
 
@@ -101,5 +180,26 @@
     <script src="script.js"></script>
 
 </body>
+<script>
+
+if(
+
+localStorage.getItem(
+"loggedIn"
+)
+
+!==
+
+"true"
+
+){
+
+    window.location.href =
+    "login.html";
+
+}
+
+</script>
 
 </html>
+<script src="script.js"></script>

@@ -31,24 +31,53 @@ function displayProducts(items){
 
         <div class="product">
 
-            <div>
+    <div class="partno">
 
-                <b>${item.PartNo}</b><br>
+        ${item.PartNo}
 
-                ${item.Name}<br>
+    </div>
 
-                ₹${item.Price}
+    <div class="name">
 
-            </div>
+        ${item.Name}
 
-            <input
-            type="checkbox"
+    </div>
 
-            onchange=
-            "toggleCart(this,
-            '${item.PartNo}')">
+    <div class="price">
 
-        </div>
+        ₹${item.Price}
+
+    </div>
+
+    <!-- QTY -->
+
+   <div class="actions">
+
+    <!-- QTY -->
+
+    <input
+    type="number"
+
+    min="1"
+
+    value="1"
+
+    class="qty"
+
+    onchange="updateCart()">
+
+    <!-- CHECKBOX -->
+
+    <input
+    type="checkbox"
+
+    class="check"
+
+    onchange=
+    "toggleCart(this,
+    '${item.PartNo}')">
+
+</div>
 
         `;
     });
@@ -71,7 +100,10 @@ partNo
 
     if(checkbox.checked){
 
-        cart.push(product);
+       product.element =
+checkbox.closest(".product");
+
+cart.push(product);
 
     }else{
 
@@ -86,6 +118,77 @@ partNo
     }
 
     updateCart();
+
+}
+function downloadBill(){
+
+    let invoiceItems =
+    document.getElementById(
+    "invoice-items"
+    );
+
+    invoiceItems.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item,index)=>{
+
+        let card =
+        item.element;
+
+        let qty =
+        Number(
+
+        card.querySelector(".qty")
+        .value
+
+        ) || 1;
+
+        let price =
+
+        Number(
+
+        String(item.Price)
+
+        .replace("₹","")
+        .replace("Rs.","")
+        .replace(/,/g,"")
+
+        );
+
+        let itemTotal =
+        qty * price;
+
+        total += itemTotal;
+
+       invoiceItems.innerHTML += `
+
+<tr>
+
+    <td>${index + 1}</td>
+
+    <td>${item.PartNo}</td>
+
+    <td>${item.Name}</td>
+
+    <td>${qty}</td>
+
+    <td>₹${price}</td>
+
+    <td>₹${itemTotal}</td>
+
+</tr>
+
+`;
+
+    });
+
+    document.getElementById(
+    "invoice-total-price"
+    ).innerText = total;
+
+    window.print();
+
 }
 
 function updateCart(){
@@ -95,13 +198,31 @@ function updateCart(){
 
     let total = 0;
 
-    div.innerHTML =
-    cart.map(item => {
+    div.innerHTML = "";
 
-        total +=
-        Number(item.Price) || 0;
+    cart.forEach(item=>{
 
-        return `
+          let qtyInput =
+item.element
+.querySelector(".qty");
+
+        let qty =
+        Number(qtyInput.value) || 1;
+
+        let cleanPrice =
+
+String(item.Price)
+
+.replace("₹","")
+.replace("Rs.","")
+.replace(/,/g,"");
+
+let itemTotal =
+qty * Number(cleanPrice);
+
+        total += itemTotal;
+
+        div.innerHTML += `
 
         <div class="cart-item">
 
@@ -113,13 +234,17 @@ function updateCart(){
 
             -
 
-            ₹${item.Price}
+            Qty: ${qty}
+
+            -
+
+            ₹${itemTotal}
 
         </div>
 
         `;
 
-    }).join("");
+    });
 
     document
     .getElementById("total")
@@ -164,41 +289,42 @@ document
     displayProducts(filtered);
 });
 
-async function downloadPDF(){
+async function downloadinvoice(){
 
-    if(cart.length === 0){
+    let invoiceItems =
+    document.getElementById("invoice-items");
 
-        alert(
-            "Please Select Product"
-        );
+    invoiceItems.innerHTML = "";
 
-        return;
-    }
+    let total = 0;
 
-    const response =
-    await fetch("/download",{
+    products.forEach(product=>{
 
-        method:"POST",
+        if(product.selected){
 
-        headers:{
-            "Content-Type":
-            "application/json"
-        },
+            total += product.price;
 
-        body:
-        JSON.stringify(cart)
+            invoiceItems.innerHTML += `
+
+            <tr>
+
+                <td>${product.partNo}</td>
+                <td>${product.name}</td>
+                <td>₹${product.price}</td>
+
+            </tr>
+
+            `;
+
+        }
+
     });
 
-    const blob =
-    await response.blob();
+    document.getElementById(
+    "invoice-total-price"
+    ).innerText = total;
 
-    const a =
-    document.createElement("a");
+    window.print();
+    
 
-    a.href =
-    URL.createObjectURL(blob);
-
-    a.download = "bill.pdf";
-
-    a.click();
 }
