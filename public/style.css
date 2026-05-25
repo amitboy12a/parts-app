@@ -623,9 +623,10 @@ body{
 
 .invoice-logo{
 
-    width:300px;
+    width:300px; 
 
-     margin-top:-30px;
+
+ margin-top:-30px;
 
     margin-bottom:10px;
 
@@ -649,9 +650,11 @@ body{
 
     color:#111;
 
-    margin-top:-50px;
+letter-spacing:2px;
 
-    letter-spacing:2px;
+     margin-top:-50px;
+
+     
     
 
     
