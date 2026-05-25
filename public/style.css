@@ -625,7 +625,7 @@ body{
 
     width:250px;
 
-     margin-top:-10px;
+     margin-top:-30px;
 
     margin-bottom:10px;
 
@@ -650,6 +650,8 @@ body{
     color:#111;
 
     letter-spacing:2px;
+
+     margin-top:-50px;
 
 }
 
@@ -1099,5 +1101,39 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
+}
+
+/* INVOICE INFO */
+
+.invoice-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-top:20px;
+
+    padding:0 30px;
+
+}
+
+/* LEFT SIDE */
+
+.invoice-info div:first-child{
+
+    margin-left:20px;
+
+}
+
+/* RIGHT SIDE */
+
+.invoice-info div:last-child{
+
+    margin-right:20px;
+
+    text-align:right;
 
 }
